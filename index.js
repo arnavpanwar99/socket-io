@@ -38,10 +38,10 @@ io.on('connection', socket => {
     })
 
     socket.on('disconnect', () => {
-        const user = removeUser(socket.id);
-
+        // const user = removeUser(socket.id);
+        const user = getUser(socket.id);
         if(user){
-            io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has left the chat.`});
+            io.to(user.room).emit('message', {user: 'admin', text: `${user.name} went offline.`});
         }
     });
 });
